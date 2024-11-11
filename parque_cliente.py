@@ -21,9 +21,14 @@ def cadastrar():
         nome = input("digite o nome do cliente: ").capitalize()
         idade = int(input("digite a idade do cliente: "))
         rg = int(input("digite o RG do cliente: "))
-        id_ingresso = id
+        ingresso = input("digite o tipo do ingresso \nP-Padrão(R$50,00), \nV-VIP(R$75,00) \n: ").upper()
+        ing_qunt = int(input("quantos ingressos você quer comprar: "))
+        if ingresso =="P":
+            valor = 50*ing_qunt
+        elif ingresso =="V":
+            valor = 25*ing_qunt
     
-        comando_sql = f'INSERT INTO clientes (id_clientes, nome_clientes, idade_clientes, rg_clientes,id_ingresso) VALUES ({id},"{nome}", {idade}, {rg}, {id_ingresso})'
+        comando_sql = f'INSERT INTO clientes (id_clientes, nome_clientes, idade_clientes, rg_clientes, ingreso_tipo, ingresso_quant, ingresso_valor) VALUES ({id},"{nome}", {idade}, {rg}, "{ingresso}", {ing_qunt}, {valor})'
         cursor.execute(comando_sql)
         conexao_banco.commit()
     
