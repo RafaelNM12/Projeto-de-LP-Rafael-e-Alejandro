@@ -26,7 +26,7 @@ def visitantes():
 
 #-------------------------------------------------------------------------------------------------#
 
-imagem = Image.open("logo.png")
+imagem = Image.open("./Assets/Logo.jpg")
 imagem = ImageTk.PhotoImage(file="./Assets/Logo.jpg")
 img = Label(root, image=imagem, bg="#021C2F")
 img.Imagem = imagem
