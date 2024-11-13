@@ -1,5 +1,16 @@
 from tkinter import *
 from PIL import ImageTk, Image
+import mysql.connector
+
+conexao_banco = mysql.connector.connect (
+    host = "localhost",
+    user = "root",
+    password = "",
+    database = "parque_aquatico"
+)
+cursor = conexao_banco.cursor()
+
+
 root = Tk() #Criar o TK (Cria a janela)
 root.title("Águas Rasas") 
 root.config(bg="#021C2F")
@@ -75,5 +86,18 @@ cpf = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=2, pad
 
 Label(framefunc, text="Email: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 400))
 Email = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=4, padx=(100, 0))
+
+def armazenar():
+    nome = nome.get()
+    cpf = cpf.get()
+    id = id.get()
+    
+    cursor.execute("INSERT INTO funcionarios (id_funcionarios, nome_funcionarios,cpf_funcionarios) VALUES (%s,%s,%s)")
+    conexao_banco.commit()
+
+
+
+
+RegistrarButton = Button(framefunc, text="Registrar", width=35, command=armazenar)
 
 root.mainloop()
