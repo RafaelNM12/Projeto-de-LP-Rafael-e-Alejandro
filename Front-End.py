@@ -69,4 +69,4 @@ Button(framecadastrar, text="Volte para a tela inicial", command=volta_cadastro)
 
 Label(framefunc, text="Nome: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 120))
 
-root.mainloop()     #Loop 
+root.mainloop()
