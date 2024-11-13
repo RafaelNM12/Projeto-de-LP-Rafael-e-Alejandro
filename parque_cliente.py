@@ -73,8 +73,7 @@ def pesquisar():
         print(dados)
 
         if len(dados) <= 0:
-            print('Não encontrado!')  
-            print('blababla')
+            print('Não encontrado!')
     
     elif escolha == "T":
         comando = f'SELECT * FROM clientes;'
