@@ -68,5 +68,6 @@ Button(framecadastrar, text="Volte para a tela inicial", command=volta_cadastro)
 #------------------------------------------ fUNCIONÁRIO ------------------------------------------------------#
 
 Label(framefunc, text="Nome: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 120))
+nome = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=1, row=0, padx=(0, 120))
 
 root.mainloop()
