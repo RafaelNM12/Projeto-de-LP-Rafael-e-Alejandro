@@ -33,7 +33,7 @@ def cadastrar():
 def alterar():
     id = int(input("digite o ID do funcionarios: "))
     novo_cargo = input("digite o novo cargo do funcionario: ")
-    comando_sql = f'UPDATE funcionarios SET cargo = "{novo_cargo}" WHERE id_funcionarios = {id}'
+    comando_sql = f'UPDATE funcionarios SET cargo = "{novo_cargo}" WHERE id_funcionarios = {id};'
 
     cursor.execute(comando_sql)
     conexao_banco.commit()
@@ -48,12 +48,23 @@ def excluir():
 
 
 def pesquisar():
-    escolha = input('Escolha:\nN- nome \nT - Todos\n:').upper()
+    escolha = input('Escolha:\nN- nome \nC-cargo \nT - Todos\n:').upper()
     if escolha == 'N':
         nome = input('Digite o nome: ')
         comando = f'SELECT * FROM funcionarios WHERE nome_funcionarios like "%{nome}%"'
         cursor.execute(comando)
         dados = cursor.fetchall()
+        print(dados)
+
+        if len(dados) <= 0:
+            print('Nome não encontrado!')
+    
+    if escolha == 'C':
+        cargo = input('Digite o cargo: ')
+        comando = f'SELECT * FROM funcionarios WHERE cargo_funcionarios like "%{cargo}%"'
+        cursor.execute(comando)
+        dados = cursor.fetchall()
+        print(dados)
 
         if len(dados) <= 0:
             print('Nome não encontrado!')
@@ -63,6 +74,7 @@ def pesquisar():
         comando = f'SELECT * FROM funcionarios '
         cursor.execute(comando)
         dados = cursor.fetchall()
+        print(dados)
     
 def menu():
     while True:

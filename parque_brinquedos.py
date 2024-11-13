@@ -29,9 +29,10 @@ def cadastrar():
 
 def alterar():
     id = int(input("digite o ID do brinquedo: "))
+    nova_manu = input("digite se a manutenção esta em andamento ou se está finalizado: ").capitalize()
     novo_status = input("digite os novos status do brinquedo: ")
-    comando_sql = f'UPDATE brinquedos SET status = "{novo_status}" WHERE id_brinquedos = {id}'
-
+    comando_sql = f'UPDATE brinquedos SET manutenção_brinquedos = "{nova_manu}", status = "{novo_status}" WHERE id_brinquedos = {id}'
+    
     cursor.execute(comando_sql)
     conexao_banco.commit()
 
@@ -51,6 +52,7 @@ def pesquisar():
         comando = f'SELECT * FROM brinquedos WHERE nome_brinquedos like "%{nome}%"'
         cursor.execute(comando)
         dados = cursor.fetchall()
+        print(dados)
 
         if len(dados) <= 0:
             print('brinquedo não encontrado!')
@@ -60,6 +62,7 @@ def pesquisar():
         comando = f'SELECT * FROM brinquedos '
         cursor.execute(comando)
         dados = cursor.fetchall()
+        print(dados)
     
 def menu():
     while True:
