@@ -82,10 +82,10 @@ Label(framefunc, text="Nome: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(c
 nome = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=0, padx=(100, 0))
 
 Label(framefunc, text="CPF: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=2, padx=(0, 400))
-cpf = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=2, padx=(100, 0))
+cpf = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=2, padx =(100, 0))
 
 Label(framefunc, text="Email: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 400))
-Email = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=4, padx=(100, 0))
+Id = Entry(framefunc, width=45, font=(("Arial", 12))).grid(column=0, row=4, padx=(100, 0))
 
 def armazenar():
     nome = nome.get()
