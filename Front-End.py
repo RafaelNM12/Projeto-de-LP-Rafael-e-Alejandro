@@ -172,15 +172,15 @@ def armazenarC():
 
     ingreso_tipo = ingressoT.get()
 
-    ingresso_quant = ingressoQ.get()
+    ingresso_quant = int(ingressoQ.get())
 
-    if ingreso_tipo =="P" or ingreso_tipo =="p":
+    if ingreso_tipo == "P" or ingreso_tipo == "p" :
         valor = 50 * ingresso_quant
 
-    elif ingreso_tipo =="V" or ingreso_tipo == "v":
+    elif ingreso_tipo == "V" or ingreso_tipo == "v" :
         valor = 75 * ingresso_quant
-    
-    cursor.execute(f"INSERT INTO funcionarios (id_clientes, nome_clientes, idade_clientes, rg_clientes, ingreso_tipo, ingresso_quant, ingresso_valor) VALUES ({Id_cliente}, '{nome_cliente}', {idade_cliente}, {rg_cliente}, '{ingreso_tipo}', {ingresso_quant}, {valor}")
+
+    cursor.execute(f"INSERT INTO clientes (id_clientes, nome_clientes, idade_clientes, rg_clientes, ingreso_tipo, ingresso_quant, ingresso_valor) VALUES ({Id_cliente}, '{nome_cliente}', {idade_cliente}, {rg_cliente}, '{ingreso_tipo}', {ingresso_quant}, {valor})")
 
     conexao_banco.commit()
 
