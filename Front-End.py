@@ -192,7 +192,7 @@ def armazenar():
 
 
 RegistrarButton = Button(framefunc, text="Registrar Funcionario", width=35, command=armazenar).grid(column=0, row=14)
-t = Toplevel(parent)
+t = Toplevel(framefunc)
 
 #--------------------------------------Clientes-----------------------------------------------------------------#
 
