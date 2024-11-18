@@ -29,14 +29,58 @@ def funcionario():
     framecadastrar.pack_forget()
     framefunc.pack(expand=True)
 
+def volta_cadastro_funcionario():
+    framefunc.pack_forget()
+    framecadastrar.pack(expand=True)
+
 def visitantes():
     framecadastrar.pack_forget()
     framevisitante.pack(expand=True)
+
+def volta_cadastro_Clientes():
+    framevisitante.pack_forget()
+    framecadastrar.pack(expand=True)
 
 def brinquedos():
     framecadastrar.pack_forget()
     framebrinq.pack(expand=True)
 
+def volta_cadastro_Brinquedos():
+    framebrinq.pack_forget()
+    framecadastrar.pack(expand=True)
+
+#--------------------------------pesquisar--------------------------------#
+def Pesquisar():
+    frm.pack_forget()
+    framepesquisar.pack(expand=True)
+
+def volta_pesquisa():
+    framepesquisar.pack_forget()
+    frm.pack(expand=True)
+
+def funcionarioP():
+    framepesquisar.pack_forget()
+    framePfunc.pack(expand=True)
+
+def volta_pesquisa_funcionario():
+    framePfunc.pack_forget()
+    framepesquisar.pack(expand=True)
+
+def visitanteP():
+    framepesquisar.pack_forget()
+    framePvisitante.pack(expand=True)
+
+def volta_pesquisa_cliente():
+    framePvisitante.pack_forget()
+    framepesquisar.pack(expand=True)
+
+def brinquedosP():
+    framepesquisar.pack_forget()
+    framePbrinq.pack(expand=True)
+
+def volta_pesquisa_brinquedos():
+    framePbrinq.pack_forget()
+    framepesquisar.pack(expand=True)
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -56,7 +100,7 @@ frm.config(bg="#021C2F")
 
 menu = Label(frm, text="------------ MENU ------------", bg="#021C2F", fg="#FFFFFF", font=("Arial", 12)).grid(column=0, row=0)
 esc1 = Button(frm, text="Cadastrar", command=cadastro, width= 10).grid(column=0, row=1)
-esc2 = Button(frm, text="Pesquisar", command=root.option_add, width= 10).grid(column=0, row=2)
+esc2 = Button(frm, text="Pesquisar", command=Pesquisar, width= 10).grid(column=0, row=2)
 esc3 = Button(frm, text="Alterar", command=root.option_add, width= 10).grid(column=0, row=3)
 esc4 = Button(frm, text="Excluir", command=root.option_add, width= 10).grid(column=0, row=4)
 frm.pack()
@@ -70,6 +114,14 @@ framefunc = Frame(root, bg="#021C2F")
 framevisitante = Frame(root, bg="#021C2F")
 
 framebrinq = Frame(root, bg="#021C2F")
+
+framepesquisar = Frame(root, bg="#021C2F")
+
+framePfunc = Frame(root, bg="#021C2F")
+
+framePvisitante = Frame(root, bg="#021C2F")
+
+framePbrinq = Frame(root, bg="#021C2F")
 
 #------------------------------------------ CADASTRAR ------------------------------------------------------#
 
@@ -111,7 +163,7 @@ Label(framefunc, text="Carga-Horária: ", bg="#021C2F", fg="#FFFFFF", font="Aria
 CargaH = Entry(framefunc, width=45, font=(("Arial", 12)))
 CargaH.grid(column=0, row=12, padx=(100, 0))
 
-Button(framefunc, text="Volte para a tela inicial", command=volta_cadastro).grid(column=0, row=16)
+Button(framefunc, text="Volte para a tela de cadastro", command=volta_cadastro_funcionario).grid(column=0, row=16)
 #--------------------Armazenamento dos Funcionarios-----------------------------------------------------------#
 def armazenar():
 
@@ -162,7 +214,7 @@ Label(framevisitante, text="Quantidade de ingresso: ", bg="#021C2F", fg="#FFFFFF
 ingressoQ = Entry(framevisitante, width=45, font=(("Arial", 12)))
 ingressoQ.grid(column=0, row=10, padx=(100, 0))
 
-Button(framevisitante, text="Volte para a tela inicial", command=volta_cadastro).grid(column=0, row=14)
+Button(framevisitante, text="Volte para a tela de cadastro", command=volta_cadastro_Clientes).grid(column=0, row=14)
 #-----------------------------Armazenamento dos clientes ---------------------------------------------------------#
 
 def armazenarC():
@@ -211,7 +263,7 @@ Label(framebrinq, text="status: ", bg="#021C2F", fg="#FFFFFF", font="Arial").gri
 status = Entry(framebrinq, width=45, font=(("Arial", 12)))
 status.grid(column=0, row=6, padx=(100, 0))
 
-Button(framebrinq, text="Volte para a tela inicial", command=volta_cadastro).grid(column=0, row=10)
+Button(framebrinq, text="Volte para a tela de cadastro", command=volta_cadastro_Brinquedos).grid(column=0, row=10)
 #-------------------------------------Armazenamento dos Brinquedos----------------------------------------------------#
 
 def armazenarB():
@@ -230,6 +282,27 @@ def armazenarB():
 
 
 RegistrarButton = Button(framebrinq, text="Registrar Brinquedo", width=35, command=armazenarB).grid(column=0, row=8)
+
+#-------------------------------------Pesquisar---------------------------------------------------------------#
+
+Label(framepesquisar, text="Opções de pesquisa",  bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0)
+funcP = Button(framepesquisar, text="Funcionário", command=funcionarioP, width=10).grid(column=0, row=4, padx=(0, 120), pady=30)
+clienteP = Button(framepesquisar, text="Visitante", command=visitanteP, width=10).grid(column=0, row=4, padx=(120, 0), pady=10)
+brinqP = Button(framepesquisar, text="Brinquedos", command=brinquedosP, width=10).grid(column=0, row=5)
+
+Button(framepesquisar, text="Volte para a tela inicial", command=volta_pesquisa).grid(column=0, row=7)
+
+#---------------------------Funcionario----------------------------------------------------------------#
+
+Label(framePfunc, text="ID: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 400))
+Id = Entry(framePfunc, width=45, font=(("Arial", 12)))
+Id.grid(column=0, row=0, padx=(100, 0))
+
+
+Button(framePfunc, text="Volte para a tela de pesquisa", command=volta_pesquisa_funcionario).grid(column=0, row=7)
+
+
+
 
 
 root.mainloop()
