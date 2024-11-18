@@ -295,14 +295,29 @@ Button(framepesquisar, text="Volte para a tela inicial", command=volta_pesquisa)
 #---------------------------Funcionario----------------------------------------------------------------#
 
 Label(framePfunc, text="ID: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 400))
-Id = Entry(framePfunc, width=45, font=(("Arial", 12)))
-Id.grid(column=0, row=0, padx=(100, 0))
+IdF = Entry(framePfunc, width=45, font=(("Arial", 12)))
+IdF.grid(column=0, row=0, padx=(100, 0))
 
 
-Button(framePfunc, text="Volte para a tela de pesquisa", command=volta_pesquisa_funcionario).grid(column=0, row=7)
+Button(framePfunc, text="Volte para a tela de pesquisa", command=volta_pesquisa_funcionario).grid(column=0, row=4)
+
+#----------------------Função de pesquisa do funcionario------------------------------------------------#
+
+def pesquisaF_id():
+    idP_funcionario = IdF.get()
+
+    cursor.execute(f"SELECT * FROM funcionarios WHERE id_funcionarios = {idP_funcionario}")
+    dados = cursor.fetchall()
+    print(dados)
 
 
+pesquisaButton = Button(framePfunc, text="Pesquisar Funcionario", width=35, command=pesquisaF_id).grid(column=0, row=2)
 
+#--------------------cliente------------------------------------------------#
+
+Label(framePvisitante, text="ID: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 400))
+IdC = Entry(framePvisitante, width=45, font=(("Arial", 12)))
+IdC.grid(column=0, row=0, padx=(100, 0))
 
 
 root.mainloop()
