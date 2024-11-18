@@ -82,6 +82,11 @@ def volta_pesquisa_brinquedos():
     framePbrinq.pack_forget()
     framepesquisar.pack(expand=True)
 
+def parent():
+    Label(framefunc, text="Erro, o funcinário já foi cadastrado.")
+    t.minsize(200,100)
+    t.maxsize(500,500)
+
 #-------------------------------------------------------------------------------------------------#
 
 imagem = Image.open("./Assets/Logo.jpg")
@@ -187,6 +192,7 @@ def armazenar():
 
 
 RegistrarButton = Button(framefunc, text="Registrar Funcionario", width=35, command=armazenar).grid(column=0, row=14)
+t = Toplevel(parent)
 
 #--------------------------------------Clientes-----------------------------------------------------------------#
 
