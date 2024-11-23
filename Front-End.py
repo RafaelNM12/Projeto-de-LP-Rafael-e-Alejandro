@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from tkinter import messagebox
 import mysql.connector
 
 conexao_banco = mysql.connector.connect (
@@ -48,6 +49,7 @@ def brinquedos():
 def volta_cadastro_Brinquedos():
     framebrinq.pack_forget()
     framecadastrar.pack(expand=True)
+
 
 #--------------------------------pesquisar--------------------------------#
 def Pesquisar():
@@ -149,12 +151,6 @@ def brinquedosE():
 def volta_excluir_brinquedos():
     frameEbrinq.pack_forget()
     frameexcluir.pack(expand=True)
-
-
-"""def parent():
-    Label(framefunc, text="Erro, o funcinário já foi cadastrado.")
-    t.minsize(200,100)
-    t.maxsize(500,500)"""
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -275,9 +271,10 @@ def armazenar():
 
     conexao_banco.commit()
 
+    messagebox.showinfo("resultado","------TUDO CADASTRADO COM SUCESSO-------" )
 
 RegistrarButton = Button(framefunc, text="Registrar Funcionario", width=35, command=armazenar).grid(column=0, row=14)
-t = Toplevel(framefunc)
+
 
 #--------------------------------------Clientes-----------------------------------------------------------------#
 
@@ -334,6 +331,9 @@ def armazenarC():
 
     conexao_banco.commit()
 
+    messagebox.showinfo("resultado","------TUDO CADASTRADO COM SUCESSO-------" )
+
+
 RegistrarButton = Button(framevisitante, text="Registrar Cliente", width=35, command=armazenarC).grid(column=0, row=12)
 
 #-----------------------------------------------------Brinquedos--------------------------------------------------------#
@@ -371,6 +371,7 @@ def armazenarB():
 
     conexao_banco.commit()
 
+    messagebox.showinfo("resultado","------TUDO CADASTRADO COM SUCESSO-------" )
 
 RegistrarButton = Button(framebrinq, text="Registrar Brinquedo", width=35, command=armazenarB).grid(column=0, row=8)
 
@@ -399,7 +400,8 @@ def pesquisaF_id():
 
     cursor.execute(f"SELECT * FROM funcionarios WHERE id_funcionarios = {idP_funcionario}")
     dados = cursor.fetchall()
-    print(dados)
+    
+    messagebox.showinfo("resultado", dados )
 
 
 pesquisaButton = Button(framePfunc, text="Pesquisar Funcionario", width=35, command=pesquisaF_id).grid(column=0, row=2)
@@ -419,7 +421,8 @@ def pesquisaC_nome():
 
     cursor.execute(f"SELECT * FROM clientes WHERE nome_clientes like '%{nome_clienteP}%' ")
     dados = cursor.fetchall()
-    print(dados)
+
+    messagebox.showinfo("resultado", dados )
 
 pesquisaButton = Button(framePvisitante, text="Pesquisar cliente", width=35, command=pesquisaC_nome).grid(column=0, row=2)
 
@@ -438,7 +441,8 @@ def pesquisaB_nome():
 
     cursor.execute(f"SELECT * FROM brinquedos WHERE nome_brinquedos like '%{nome_brinqP}%' ")
     dados = cursor.fetchall()
-    print(dados)
+
+    messagebox.showinfo("resultado", dados )
 
 pesquisaButton = Button(framePbrinq, text="Pesquisar brinquedo", width=35, command=pesquisaB_nome).grid(column=0, row=2)
 
@@ -459,12 +463,6 @@ Label(frameAfunc, text="Digite o ID do funcionario que deseja alterar: ", bg="#0
 IdAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
 IdAF.grid(column=0, row=0, padx=(100, 0))
 
-
-Label(frameAfunc, text="Nome: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=2, padx=(0, 400))
-nomeAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
-nomeAF.grid(column=0, row=2, padx=(100, 0))
-nomeAF.config(state='disabled')
-
 Label(frameAfunc, text="Cargo: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=6, padx=(0, 400))
 cargoAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
 cargoAF.grid(column=0, row=6, padx=(100, 0))
@@ -472,16 +470,6 @@ cargoAF.grid(column=0, row=6, padx=(100, 0))
 Label(frameAfunc, text="Salario: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=8, padx=(0, 400))
 salarioAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
 salarioAF.grid(column=0, row=8, padx=(100, 0))
-
-Label(frameAfunc, text="Telefone: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=10, padx=(0, 400))
-telefoneAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
-telefoneAF.grid(column=0, row=10, padx=(100, 0))
-telefoneAF.config(state='disabled')
-
-Label(frameAfunc, text="CPF: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=12, padx=(0, 400))
-cpfAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
-cpfAF.grid(column=0, row=12, padx =(100, 0))
-cpfAF.config(state='disabled')
 
 Label(frameAfunc, text="Carga-Horária: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=14, padx=(0, 450))
 CargaHAF = Entry(frameAfunc, width=45, font=(("Arial", 12)))
@@ -505,6 +493,7 @@ def alterarF():
 
     conexao_banco.commit()
 
+    messagebox.showinfo("resultado", "ALTERAÇÃO COMPLETADA" )
 
 RegistrarButton = Button(frameAfunc, text="alterar dados do funcionario", width=35, command=alterarF).grid(column=0, row=16)
 
@@ -544,6 +533,8 @@ def alterarC():
 
     cursor.execute(f'UPDATE clientes SET ingreso_tipo = "{ingreso_tipoA}", ingresso_quant = {ingresso_quantA}, ingresso_valor = {valorA} WHERE id_clientes = {id_clientesA}') 
 
+    messagebox.showinfo("resultado", "ALTERAÇÃO COMPLETADA" )
+
     conexao_banco.commit()
 
 RegistrarButton = Button(frameAvisitante, text="alterar dados do Cliente", width=35, command=alterarC).grid(column=0, row=8)
@@ -576,6 +567,8 @@ def alterarB():
 
     cursor.execute(f'UPDATE brinquedos SET manutenção_brinquedos = "{manuAB}", status_brinquedos = "{statusAB}" WHERE id_brinquedos = {id_brinq} ')
     
+    messagebox.showinfo("resultado", "ALTERAÇÃO COMPLETADA" )
+
     conexao_banco.commit()
 
 Button(frameAbrinq, text='alterar dados do brinquedo', width=35 , command=alterarB).grid(column=0, row=8)
@@ -606,6 +599,8 @@ def excluirF():
 
     conexao_banco.commit()
 
+    messagebox.showinfo("resultado", "FUNCIONARIO EXCLUIDO" )
+
 Button(frameEfunc, text="excluir funcionario", width=35 , command=excluirF).grid(column=0, row=4)
 
 #----------------------------excluir clientes---------------------------------
@@ -625,6 +620,8 @@ def excluirC():
 
     conexao_banco.commit()
 
+    messagebox.showinfo("resultado", "CLIENTE EXCLUIDO" )
+
 Button(frameEvisitante, text="excluir clientes", width=35, command=excluirC).grid(column=0, row=4)
 
 #-------------------excluir brinquedos---------------------------------------------
@@ -643,6 +640,8 @@ def excluirB():
     cursor.execute(f"DELETE FROM brinquedos WHERE id_brinquedos = {id_brinquedosE} ")
 
     conexao_banco.commit()
+
+    messagebox.showinfo("resultado", "BRINQUEDO EXCLUIDO" )
 
 Button(frameEbrinq, text="excluir brinquedos", width=35, command=excluirB).grid(column=0, row=4)
 
