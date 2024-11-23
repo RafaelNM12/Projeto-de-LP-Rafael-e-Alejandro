@@ -5,7 +5,7 @@ import mysql.connector
 conexao_banco = mysql.connector.connect (
     host = "localhost",
     user = "root",
-    password = "",
+    password = "1234",
     database = "parque_aquatico"
 )
 cursor = conexao_banco.cursor()
@@ -29,63 +29,11 @@ def funcionario():
     framecadastrar.pack_forget()
     framefunc.pack(expand=True)
 
-def volta_cadastro_funcionario():
-    framefunc.pack_forget()
-    framecadastrar.pack(expand=True)
-
 def visitantes():
     framecadastrar.pack_forget()
     framevisitante.pack(expand=True)
 
-def volta_cadastro_Clientes():
-    framevisitante.pack_forget()
-    framecadastrar.pack(expand=True)
 
-def brinquedos():
-    framecadastrar.pack_forget()
-    framebrinq.pack(expand=True)
-
-def volta_cadastro_Brinquedos():
-    framebrinq.pack_forget()
-    framecadastrar.pack(expand=True)
-
-#--------------------------------pesquisar--------------------------------#
-def Pesquisar():
-    frm.pack_forget()
-    framepesquisar.pack(expand=True)
-
-def volta_pesquisa():
-    framepesquisar.pack_forget()
-    frm.pack(expand=True)
-
-def funcionarioP():
-    framepesquisar.pack_forget()
-    framePfunc.pack(expand=True)
-
-def volta_pesquisa_funcionario():
-    framePfunc.pack_forget()
-    framepesquisar.pack(expand=True)
-
-def visitanteP():
-    framepesquisar.pack_forget()
-    framePvisitante.pack(expand=True)
-
-def volta_pesquisa_cliente():
-    framePvisitante.pack_forget()
-    framepesquisar.pack(expand=True)
-
-def brinquedosP():
-    framepesquisar.pack_forget()
-    framePbrinq.pack(expand=True)
-
-def volta_pesquisa_brinquedos():
-    framePbrinq.pack_forget()
-    framepesquisar.pack(expand=True)
-
-def parent():
-    Label(framefunc, text="Erro, o funcinário já foi cadastrado.")
-    t.minsize(200,100)
-    t.maxsize(500,500)
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -105,7 +53,7 @@ frm.config(bg="#021C2F")
 
 menu = Label(frm, text="------------ MENU ------------", bg="#021C2F", fg="#FFFFFF", font=("Arial", 12)).grid(column=0, row=0)
 esc1 = Button(frm, text="Cadastrar", command=cadastro, width= 10).grid(column=0, row=1)
-esc2 = Button(frm, text="Pesquisar", command=Pesquisar, width= 10).grid(column=0, row=2)
+esc2 = Button(frm, text="Pesquisar", command=root.option_add, width= 10).grid(column=0, row=2)
 esc3 = Button(frm, text="Alterar", command=root.option_add, width= 10).grid(column=0, row=3)
 esc4 = Button(frm, text="Excluir", command=root.option_add, width= 10).grid(column=0, row=4)
 frm.pack()
@@ -118,24 +66,14 @@ framefunc = Frame(root, bg="#021C2F")
 
 framevisitante = Frame(root, bg="#021C2F")
 
-framebrinq = Frame(root, bg="#021C2F")
-
-framepesquisar = Frame(root, bg="#021C2F")
-
-framePfunc = Frame(root, bg="#021C2F")
-
-framePvisitante = Frame(root, bg="#021C2F")
-
-framePbrinq = Frame(root, bg="#021C2F")
-
 #------------------------------------------ CADASTRAR ------------------------------------------------------#
 
 Label(framecadastrar, text="Opções de cadastro",  bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0)
 func = Button(framecadastrar, text="Funcionário", command=funcionario, width=10).grid(column=0, row=4, padx=(0, 120), pady=30)
 cliente = Button(framecadastrar, text="Visitante", command=visitantes, width=10).grid(column=0, row=4, padx=(120, 0), pady=10)
-brinq = Button(framecadastrar, text="Brinquedos", command=brinquedos, width=10).grid(column=0, row=5)
 
-Button(framecadastrar, text="Volte para a tela inicial", command=volta_cadastro).grid(column=0, row=7)
+
+Button(framecadastrar, text="Volte para a tela inicial", command=volta_cadastro).grid(column=0, row=5)
 
 
 #------------------------------------------ fUNCIONÁRIO ------------------------------------------------------#
@@ -168,7 +106,6 @@ Label(framefunc, text="Carga-Horária: ", bg="#021C2F", fg="#FFFFFF", font="Aria
 CargaH = Entry(framefunc, width=45, font=(("Arial", 12)))
 CargaH.grid(column=0, row=12, padx=(100, 0))
 
-Button(framefunc, text="Volte para a tela de cadastro", command=volta_cadastro_funcionario).grid(column=0, row=16)
 #--------------------Armazenamento dos Funcionarios-----------------------------------------------------------#
 def armazenar():
 
@@ -191,8 +128,7 @@ def armazenar():
     conexao_banco.commit()
 
 
-RegistrarButton = Button(framefunc, text="Registrar Funcionario", width=35, command=armazenar).grid(column=0, row=14)
-t = Toplevel(framefunc)
+RegistrarButton = Button(framefunc, text="Registrar A", width=35, command=armazenar).grid(column=0, row=14)
 
 #--------------------------------------Clientes-----------------------------------------------------------------#
 
@@ -220,7 +156,6 @@ Label(framevisitante, text="Quantidade de ingresso: ", bg="#021C2F", fg="#FFFFFF
 ingressoQ = Entry(framevisitante, width=45, font=(("Arial", 12)))
 ingressoQ.grid(column=0, row=10, padx=(100, 0))
 
-Button(framevisitante, text="Volte para a tela de cadastro", command=volta_cadastro_Clientes).grid(column=0, row=14)
 #-----------------------------Armazenamento dos clientes ---------------------------------------------------------#
 
 def armazenarC():
@@ -249,81 +184,6 @@ def armazenarC():
 
     conexao_banco.commit()
 
-RegistrarButton = Button(framevisitante, text="Registrar Cliente", width=35, command=armazenarC).grid(column=0, row=12)
-
-#-----------------------------------------------------Brinquedos--------------------------------------------------------#
-
-Label(framebrinq, text="ID: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 400))
-IdB = Entry(framebrinq, width=45, font=(("Arial", 12)))
-IdB.grid(column=0, row=0, padx=(100, 0))
-
-Label(framebrinq, text="Nome: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=2, padx=(0, 400))
-nomeB = Entry(framebrinq, width=45, font=(("Arial", 12)))
-nomeB.grid(column=0, row=2, padx=(100, 0))
-
-Label(framebrinq, text="Manutenção: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 400))
-manutencao = Entry(framebrinq, width=45, font=(("Arial", 12)))
-manutencao.grid(column=0, row=4, padx=(100, 0))
-
-Label(framebrinq, text="status: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=6, padx=(0, 400))
-status = Entry(framebrinq, width=45, font=(("Arial", 12)))
-status.grid(column=0, row=6, padx=(100, 0))
-
-Button(framebrinq, text="Volte para a tela de cadastro", command=volta_cadastro_Brinquedos).grid(column=0, row=10)
-#-------------------------------------Armazenamento dos Brinquedos----------------------------------------------------#
-
-def armazenarB():
-
-    id_brinq = IdB.get()
-    
-    nome_brinq = nomeB.get()
-    
-    manuc = manutencao.get()
-
-    stat = status.get()
-
-    cursor.execute(f"INSERT INTO brinquedos (id_brinquedos, nome_brinquedos, manutenção_brinquedos, status_brinquedos) VALUES ({id_brinq}, '{nome_brinq}', '{manuc}', '{stat}')")
-
-    conexao_banco.commit()
-
-
-RegistrarButton = Button(framebrinq, text="Registrar Brinquedo", width=35, command=armazenarB).grid(column=0, row=8)
-
-#-------------------------------------Pesquisar---------------------------------------------------------------#
-
-Label(framepesquisar, text="Opções de pesquisa",  bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0)
-funcP = Button(framepesquisar, text="Funcionário", command=funcionarioP, width=10).grid(column=0, row=4, padx=(0, 120), pady=30)
-clienteP = Button(framepesquisar, text="Visitante", command=visitanteP, width=10).grid(column=0, row=4, padx=(120, 0), pady=10)
-brinqP = Button(framepesquisar, text="Brinquedos", command=brinquedosP, width=10).grid(column=0, row=5)
-
-Button(framepesquisar, text="Volte para a tela inicial", command=volta_pesquisa).grid(column=0, row=7)
-
-#---------------------------Funcionario----------------------------------------------------------------#
-
-Label(framePfunc, text="ID: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 400))
-IdF = Entry(framePfunc, width=45, font=(("Arial", 12)))
-IdF.grid(column=0, row=0, padx=(100, 0))
-
-
-Button(framePfunc, text="Volte para a tela de pesquisa", command=volta_pesquisa_funcionario).grid(column=0, row=4)
-
-#----------------------Função de pesquisa do funcionario------------------------------------------------#
-
-def pesquisaF_id():
-    idP_funcionario = IdF.get()
-
-    cursor.execute(f"SELECT * FROM funcionarios WHERE id_funcionarios = {idP_funcionario}")
-    dados = cursor.fetchall()
-    print(dados)
-
-
-pesquisaButton = Button(framePfunc, text="Pesquisar Funcionario", width=35, command=pesquisaF_id).grid(column=0, row=2)
-
-#--------------------cliente------------------------------------------------#
-
-Label(framePvisitante, text="ID: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=0, padx=(0, 400))
-IdC = Entry(framePvisitante, width=45, font=(("Arial", 12)))
-IdC.grid(column=0, row=0, padx=(100, 0))
-
+RegistrarButton = Button(framevisitante, text="Registrar C", width=35, command=armazenarC).grid(column=0, row=14)
 
 root.mainloop()
