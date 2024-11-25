@@ -6,7 +6,7 @@ import mysql.connector
 conexao_banco = mysql.connector.connect (
     host = "localhost",
     user = "root",
-    password = "1234",
+    password = "",
     database = "parque_aquatico"
 )
 cursor = conexao_banco.cursor()
@@ -154,11 +154,11 @@ def volta_excluir_brinquedos():
 
 #-------------------------------------------------------------------------------------------------#
 
-"""imagem = Image.open("./Assets/Logo.jpg")
+imagem = Image.open("./Assets/Logo.jpg")
 imagem = ImageTk.PhotoImage(file="./Assets/Logo.jpg")
 img = Label(root, image=imagem, bg="#021C2F")
 img.Imagem = imagem
-img.pack()"""
+img.pack()
 
 #-------------------------------------------------------------------------------------------------#
 
@@ -401,7 +401,11 @@ def pesquisaF_id():
     cursor.execute(f"SELECT * FROM funcionarios WHERE id_funcionarios = {idP_funcionario}")
     dados = cursor.fetchall()
     
-    messagebox.showinfo("resultado", dados )
+    if len(dados) <= 0:
+            messagebox.showinfo('Nome não encontrado!', "isso não esta no banco")
+    else:
+        for i in dados:
+            messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Cargo: {i[2]}, Salario: {i[3]}, Telefone: {i[4]}, CPF: {i[5]}, Carga Horaria: {i[6]}')
 
 
 pesquisaButton = Button(framePfunc, text="Pesquisar Funcionario", width=35, command=pesquisaF_id).grid(column=0, row=2)
@@ -422,7 +426,11 @@ def pesquisaC_nome():
     cursor.execute(f"SELECT * FROM clientes WHERE nome_clientes like '%{nome_clienteP}%' ")
     dados = cursor.fetchall()
 
-    messagebox.showinfo("resultado", dados )
+    if len(dados) <= 0:
+            messagebox.showinfo('Nome não encontrado!', "isso não esta no banco")
+    else:
+        for i in dados:
+            messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Idade: {i[2]}, RG: {i[3]}, TIPO do INGRESSO: {i[4]}, Quantidade de Ingressos: {i[5]}, Valor Total: {i[6]}')
 
 pesquisaButton = Button(framePvisitante, text="Pesquisar cliente", width=35, command=pesquisaC_nome).grid(column=0, row=2)
 
@@ -442,7 +450,11 @@ def pesquisaB_nome():
     cursor.execute(f"SELECT * FROM brinquedos WHERE nome_brinquedos like '%{nome_brinqP}%' ")
     dados = cursor.fetchall()
 
-    messagebox.showinfo("resultado", dados )
+    if len(dados) <= 0:
+            messagebox.showinfo('Nome não encontrado!', "isso não esta no banco")
+    else:
+        for i in dados:
+            messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Manuteção: {i[2]}, Status: {i[3]} ')
 
 pesquisaButton = Button(framePbrinq, text="Pesquisar brinquedo", width=35, command=pesquisaB_nome).grid(column=0, row=2)
 
