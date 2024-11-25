@@ -402,7 +402,7 @@ def pesquisaF_id():
     dados = cursor.fetchall()
     
     if len(dados) <= 0:
-            messagebox.showinfo('Nome não encontrado!', "isso não esta no banco")
+            messagebox.showerror('Nome não encontrado!', "isso não esta no banco")
     else:
         for i in dados:
             messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Cargo: {i[2]}, Salario: {i[3]}, Telefone: {i[4]}, CPF: {i[5]}, Carga Horaria: {i[6]}')
@@ -427,7 +427,7 @@ def pesquisaC_nome():
     dados = cursor.fetchall()
 
     if len(dados) <= 0:
-            messagebox.showinfo('Nome não encontrado!', "isso não esta no banco")
+            messagebox.showerror('Nome não encontrado!', "isso não esta no banco")
     else:
         for i in dados:
             messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Idade: {i[2]}, RG: {i[3]}, TIPO do INGRESSO: {i[4]}, Quantidade de Ingressos: {i[5]}, Valor Total: {i[6]}')
@@ -451,7 +451,7 @@ def pesquisaB_nome():
     dados = cursor.fetchall()
 
     if len(dados) <= 0:
-            messagebox.showinfo('Nome não encontrado!', "isso não esta no banco")
+            messagebox.showerror('Nome não encontrado!', "isso não esta no banco")
     else:
         for i in dados:
             messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Manuteção: {i[2]}, Status: {i[3]} ')
