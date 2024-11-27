@@ -17,7 +17,7 @@ root.title("Águas Rasas")
 root.config(bg="#021C2F")
 
 #---------------------------------------------DEFS---------------------------------------------------#
-
+#-------------------------------------------CADASTRO-------------------------------------------------#
 def cadastro():
     frm.pack_forget()
     framecadastrar.pack(expand=True)
@@ -517,11 +517,11 @@ Label(frameAvisitante, text="Digite o ID do clientes que deseja alterar: ", bg="
 IdCA = Entry(frameAvisitante, width=45, font=(("Arial", 12)))
 IdCA.grid(column=0, row=0, padx=(100, 0))
 
-Label(frameAvisitante, text="Tipo do ingresso: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=8, padx=(0, 500))
+Label(frameAvisitante, text="Tipo do ingresso(V-para VIP $75 ou P- para Padrão $50): ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=2, padx=(0, 800))
 ingressoTA = Entry(frameAvisitante, width=45, font=(("Arial", 12)))
 ingressoTA.grid(column=0, row=2, padx=(100, 0))
 
-Label(frameAvisitante, text="Quantidade de ingresso: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=10, padx=(0, 500))
+Label(frameAvisitante, text="Quantidade de ingresso: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 700))
 ingressoQA = Entry(frameAvisitante, width=45, font=(("Arial", 12)))
 ingressoQA.grid(column=0, row=4, padx=(100, 0))
 
@@ -559,11 +559,11 @@ Label(frameAbrinq, text="Digite o ID do Brinquedo que deseja alterar: ", bg="#02
 IdBA = Entry(frameAbrinq, width=45, font=(("Arial", 12)))
 IdBA.grid(column=0, row=0, padx=(100, 0))
 
-Label(frameAbrinq, text="Manutenção: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 450))
+Label(frameAbrinq, text="Manutenção(ANDAMENTO OU FINALIZADO): ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 800))
 manutencaoA = Entry(frameAbrinq, width=45, font=(("Arial", 12)))
 manutencaoA.grid(column=0, row=4, padx=(100, 0))
 
-Label(frameAbrinq, text="status: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=6, padx=(0, 400))
+Label(frameAbrinq, text="status(APTO OU NÃO APTO): ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=6, padx=(0, 700))
 statusA = Entry(frameAbrinq, width=45, font=(("Arial", 12)))
 statusA.grid(column=0, row=6, padx=(100, 0))
 
