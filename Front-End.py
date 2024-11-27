@@ -269,6 +269,7 @@ def armazenar():
 
     cursor.execute(f"INSERT INTO funcionarios (id_funcionarios, nome_funcionarios, cargo_funcionarios, salario_funcionarios, telefone_funcionarios, cpf_funcionarios, cargaH_funcionarios) VALUES ({id_funcionarios},'{nome_funcionarios}','{cargo_funcionarios}',{salario_funcionarios},{telefone_funcionarios},{cpf_funcionarios},{cargaH_funcionarios})")
 
+    
     conexao_banco.commit()
 
     messagebox.showinfo("resultado","------TUDO CADASTRADO COM SUCESSO-------" )
@@ -294,11 +295,11 @@ Label(framevisitante, text="RG: ", bg="#021C2F", fg="#FFFFFF", font="Arial").gri
 rg = Entry(framevisitante, width=45, font=(("Arial", 12)))
 rg.grid(column=0, row=6, padx=(100, 0))
 
-Label(framevisitante, text="Tipo do ingresso: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=8, padx=(0, 450))
+Label(framevisitante, text="Tipo do ingresso(V-para VIP $75 ou P- para Padrão $50): ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=8, padx=(0, 700))
 ingressoT = Entry(framevisitante, width=45, font=(("Arial", 12)))
 ingressoT.grid(column=0, row=8, padx=(100, 0))
 
-Label(framevisitante, text="Quantidade de ingresso: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=10, padx=(0, 450))
+Label(framevisitante, text="Quantidade de ingresso: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=10, padx=(0, 500))
 ingressoQ = Entry(framevisitante, width=45, font=(("Arial", 12)))
 ingressoQ.grid(column=0, row=10, padx=(100, 0))
 
@@ -346,11 +347,11 @@ Label(framebrinq, text="Nome: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(
 nomeB = Entry(framebrinq, width=45, font=(("Arial", 12)))
 nomeB.grid(column=0, row=2, padx=(100, 0))
 
-Label(framebrinq, text="Manutenção: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 400))
+Label(framebrinq, text="Manutenção(ANDAMENTO OU FINALIZADO): ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=4, padx=(0, 800))
 manutencao = Entry(framebrinq, width=45, font=(("Arial", 12)))
 manutencao.grid(column=0, row=4, padx=(100, 0))
 
-Label(framebrinq, text="status: ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=6, padx=(0, 400))
+Label(framebrinq, text="status(APTO OU NÃO APTO): ", bg="#021C2F", fg="#FFFFFF", font="Arial").grid(column=0, row=6, padx=(0, 600))
 status = Entry(framebrinq, width=45, font=(("Arial", 12)))
 status.grid(column=0, row=6, padx=(100, 0))
 
@@ -369,6 +370,7 @@ def armazenarB():
 
     cursor.execute(f"INSERT INTO brinquedos (id_brinquedos, nome_brinquedos, manutenção_brinquedos, status_brinquedos) VALUES ({id_brinq}, '{nome_brinq}', '{manuc}', '{stat}')")
 
+    
     conexao_banco.commit()
 
     messagebox.showinfo("resultado","------TUDO CADASTRADO COM SUCESSO-------" )
@@ -402,7 +404,7 @@ def pesquisaF_id():
     dados = cursor.fetchall()
     
     if len(dados) <= 0:
-            messagebox.showerror('Nome não encontrado!', "isso não esta no banco")
+            messagebox.showerror('ERRO!', "isso não esta no banco")
     else:
         for i in dados:
             messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Cargo: {i[2]}, Salario: {i[3]}, Telefone: {i[4]}, CPF: {i[5]}, Carga Horaria: {i[6]}')
@@ -427,7 +429,7 @@ def pesquisaC_nome():
     dados = cursor.fetchall()
 
     if len(dados) <= 0:
-            messagebox.showerror('Nome não encontrado!', "isso não esta no banco")
+            messagebox.showerror('ERRO!', "isso não esta no banco")
     else:
         for i in dados:
             messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Idade: {i[2]}, RG: {i[3]}, TIPO do INGRESSO: {i[4]}, Quantidade de Ingressos: {i[5]}, Valor Total: {i[6]}')
@@ -451,7 +453,7 @@ def pesquisaB_nome():
     dados = cursor.fetchall()
 
     if len(dados) <= 0:
-            messagebox.showerror('Nome não encontrado!', "isso não esta no banco")
+            messagebox.showerror('ERRO!', "isso não esta no banco")
     else:
         for i in dados:
             messagebox.showinfo("Resultado", f'ID: {i[0]}, Nome: {i[1]}, Manuteção: {i[2]}, Status: {i[3]} ')
